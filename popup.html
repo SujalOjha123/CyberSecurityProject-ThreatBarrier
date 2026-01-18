@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ThreatBarrier</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="header">
+    <img src="../ui-icons/radar.png" class="popup-icon" alt="Radar" />
+    <h1>ThreatBarrier</h1>
+  </div>
+
+ 
+  <!-- Firebase Login Form -->
+  <div id="loginForm" class="login-form">
+    <div id="alert-container" role="status" aria-live="polite"></div>
+    <h2>Login to ThreatBarrier</h2>
+
+    <input type="email" id="email" placeholder="Email" autocomplete="email" required />
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password" required />
+
+    <div class="buttons" style="display:flex; gap:8px; margin-top:10px;">
+      <button id="loginBtn" type="button">Login</button>
+      <button id="signupBtn" type="button">Sign up</button>
+    </div>
+
+    <p style="margin-top:10px; font-size:12px; opacity:0.8;">
+      After login, your ThreatBarrier controls will appear.
+    </p>
+  </div>
+
+  <!-- App content wrapper (shown after login) -->
+  <div id="appContent" style="display:none;">
+
+    <!-- Main threat score display (after login) -->
+    <div class="score-container" id="scoreContainer">
+      <img src="../ui-icons/firewall.png" class="score-icon" alt="Firewall" />
+      <span id="threat-score">Score: --</span>
+
+      <!-- Small badge for color-coded score -->
+      <span id="threatScoreBadge" class="score-badge" aria-live="polite">--</span>
+    </div>
+
+    <!-- Phishing Badge -->
+    <div id="phishingBadge" class="phish-badge phish-unknown" aria-live="polite">
+      Phishing: Not scanned
+    </div>
+    <div id="phishingDetail" class="phish-detail" aria-live="polite"></div>
+
+    <!-- Buttons -->
+    <div class="buttons" id="actionButtons">
+      <button id="scanPageBtn" type="button">
+        <img src="../ui-icons/radar.png" class="btn-icon" alt="" />
+        Scan Page
+      </button>
+
+      <button id="openDashboardBtn" type="button">
+        <img src="../ui-icons/firewall.png" class="btn-icon" alt="" />
+        Open Dashboard
+      </button>
+    </div>
+
+    <!-- Logout -->
+    <div class="buttons" style="margin-top:8px;">
+      <button id="logoutBtn" type="button">Logout</button>
+    </div>
+
+    <!-- Alert / message container -->
+    <div id="alert-container" role="status" aria-live="polite"></div>
+
+    <!-- Summary section for current page -->
+    <section class="summary" id="summarySection">
+      <div class="summary-row">
+        <span class="label">Threat level:</span>
+        <span id="threatLevelLabel" class="value">--</span>
+      </div>
+      <div class="summary-row">
+        <span class="label">Cookie status:</span>
+        <span id="cookieStatusLabel" class="value">--</span>
+      </div>
+    </section>
+
+    <!---------Technology lookup//---------->
+    <button id="openTechLookupBtn">Technology Lookup</button>
+   
+    <!-----Virustotal-->
+  <button id="btnVirusTotal">
+  VirusTotal Scan
+</button>
+
+
+    <!-- Recently blocked trackers / domains -->
+    <section class="blocked-section" id="blockedSection">
+      <h2 class="section-title">Recently blocked</h2>
+      <ul id="blockedList" class="blocked-list">
+        <li class="placeholder">No trackers blocked yet.</li>
+      </ul>
+    </section>
+
+  </div>
+
+  <!-- IMPORTANT: popup.js must be a module -->
+<script type="module" src="popup.js"></script>
+
+
+</body>
+</html>

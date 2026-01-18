@@ -1,0 +1,38 @@
+{
+  "trackerDomains": [
+    "doubleclick.net",
+    "google-analytics.com",
+    "googletagmanager.com",
+    "facebook.net",
+    "ads.twitter.com",
+    "taboola.com",
+    "outbrain.com",
+    "scorecardresearch.com",
+    "adservice.google.com"
+  ],
+
+  "suspiciousTlds": [
+    "zip",
+    "xyz",
+    "top",
+    "click",
+    "link",
+    "ml",
+    "cf",
+    "gq",
+    "work",
+    "tk"
+  ],
+
+  "brandDomains": [
+    "google.com",
+    "facebook.com",
+    "paypal.com",
+    "amazon.com",
+    "apple.com",
+    "microsoft.com",
+    "netflix.com",
+    "instagram.com",
+    "twitter.com"
+  ]
+}

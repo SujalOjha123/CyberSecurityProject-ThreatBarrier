@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ThreatBarrier — Technology Lookup</title>
+  <link rel="stylesheet" href="techlookup.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <div class="logo">🔍</div>
+        <div>
+          <div class="title">ThreatBarrier — Technology Lookup</div>
+          <div class="subtitle">Detect CMS, frameworks, analytics, ecommerce, CDN indicators (FREE local scan).</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="btnExport" class="btn ghost" disabled>Export as CSV</button>
+        <button id="btnRefresh" class="btn">Refresh</button>
+      </div>
+    </header>
+
+    <section class="bar card">
+      <div class="bar-row">
+        <input id="urlInput" class="input" placeholder="https://example.com" />
+        <button id="btnLookup" class="btn primary">Lookup</button>
+      </div>
+      <div id="status" class="status"></div>
+    </section>
+
+    <main class="grid">
+      <section class="left">
+        <div class="section-title">Detected Technologies</div>
+        <div id="techCards" class="cards"></div>
+
+        <div class="section-title mt">Notes</div>
+        <div class="card note">
+          This is a <b>local, privacy-friendly</b> scan (no external API). Some server-side technologies (e.g., exact server type, IP, TLS issuer)
+          may not be detectable from the browser without backend access.
+        </div>
+      </section>
+
+      <aside class="right">
+        <div class="panel card">
+          <div class="panel-title">Website / Company</div>
+          <div id="companyBox" class="kv"></div>
+        </div>
+
+        <div class="panel card">
+          <div class="panel-title">Meta Information</div>
+          <div id="metaBox" class="kv"></div>
+        </div>
+
+        <div class="panel card">
+          <div class="panel-title">Network (Browser-visible)</div>
+          <div id="netBox" class="kv"></div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script type="module" src="techlookup.js"></script>
+</body>
+</html>

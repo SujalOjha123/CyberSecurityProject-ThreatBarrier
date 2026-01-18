@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>ThreatBarrier — VirusTotal Scan</title>
+  <link rel="stylesheet" href="virustotal.css" />
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="hdr">
+      <h1>ThreatBarrier — VirusTotal Scan</h1>
+      <p>Scan a URL using VirusTotal threat intelligence (via your backend).</p>
+    </header>
+
+    <!-- URL input card -->
+    <section class="card">
+      <label class="label">URL to scan</label>
+      <div class="row">
+        <input id="url" placeholder="https://example.com" />
+        <button id="btnScan" class="btn primary">Scan</button>
+      </div>
+      <div id="status" class="status">Idle</div>
+    </section>
+
+    <!-- Results card -->
+    <section class="card">
+      <div class="resultsHeader">
+        <h2>Scan results</h2>
+        <div class="actions">
+          <a id="vtLink" class="btn ghost" target="_blank" rel="noreferrer" style="display:none;">Open in VirusTotal</a>
+          <button id="btnToggleRaw" class="btn ghost">Show raw</button>
+        </div>
+      </div>
+
+      <div id="summary" class="summary"></div>
+
+      <div class="filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="malicious">Malicious</button>
+        <button class="chip" data-filter="suspicious">Suspicious</button>
+        <button class="chip" data-filter="harmless">Clean</button>
+      </div>
+
+      <div class="tableWrap">
+        <table class="vtTable">
+          <thead>
+            <tr>
+              <th>Vendor</th>
+              <th>Category</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody id="vendorRows"></tbody>
+        </table>
+      </div>
+
+      <pre id="rawJson" class="out hidden"></pre>
+    </section>
+  </div>
+
+  <script src="virustotal.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ThreatBarrier – Privacy Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+  <div class="tb-app">
+
+    
+    <!-- Header -->
+    <header class="tb-header">
+      <div class="tb-header-left">
+        <img src="../ui-icons/firewall.png" class="tb-header-icon" alt="ThreatBarrier" />
+        <div>
+          <h1>ThreatBarrier — Privacy Dashboard</h1>
+          <p>Monitor web threats, privacy risks, and your custom firewall rules in real time.</p>
+        </div>
+      </div>
+
+      <div class="tb-header-right">
+        <button id="btnRefresh" class="tb-btn primary">Refresh</button>
+        <button id="btnClear" class="tb-btn subtle">Clear Logs</button>
+        <button id="btnExport" class="tb-btn subtle">Export CSV</button>
+      </div>
+    </header>
+
+    <!-- Top stats -->
+    <section class="tb-stats">
+      <div class="tb-stat-card">
+        <span class="stat-label">Total Blocked Requests</span>
+        <span class="stat-value" id="statTotalBlocked">0</span>
+      </div>
+      <div class="tb-stat-card">
+        <span class="stat-label">High-Risk Events</span>
+        <span class="stat-value" id="statHighRisk">0</span>
+      </div>
+      <div class="tb-stat-card">
+        <span class="stat-label">Trackers Seen</span>
+        <span class="stat-value" id="statTrackers">0</span>
+      </div>
+    </section>
+
+    <!-- Main layout -->
+    <main class="tb-main-layout">
+
+      <!-- Live Network Monitor -->
+      <section class="tb-panel large">
+        <div class="tb-panel-header">
+          <div class="tb-panel-title">
+            <img src="../ui-icons/radar.png" class="tb-panel-icon" alt="Live monitor" />
+            <div>
+              <h2>Live Network Monitor</h2>
+              <p>Requests intercepted by ThreatBarrier’s firewall rules.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tb-table-wrapper">
+          <table id="logsTable" class="tb-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Time</th>
+                <th>Action</th>
+                <th>Score</th>
+                <th>Source</th>
+                <th>Visited Site</th>
+                <th>Tracking Domain</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td colspan="7" class="tb-empty">No data loaded yet.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Right column: alerts + rules -->
+      <section class="tb-side-column">
+
+        <!-- High risk alerts -->
+        <section class="tb-panel">
+          <div class="tb-panel-header">
+            <div class="tb-panel-title">
+              <img src="../ui-icons/alert.png" class="tb-panel-icon" alt="Alerts" />
+              <div>
+                <h2>Recent High-Risk Alerts</h2>
+                <p>Events with threat score ≥ 60.</p>
+              </div>
+            </div>
+          </div>
+          <div class="tb-table-wrapper small">
+            <table id="alertsTable" class="tb-table tb-table-compact">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Score</th>
+                  <th>Domain</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="3" class="tb-empty">No high-risk events yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ✅ Phishing Events -->
+        <section class="tb-panel">
+          <div class="tb-panel-header">
+            <div class="tb-panel-title">
+              <img src="../ui-icons/alert.png" class="tb-panel-icon" alt="Phishing" />
+              <div>
+                <h2>Phishing Events</h2>
+                <p>Events flagged by threat intel (phishingDetected=true).</p>
+              </div>
+            </div>
+          </div>
+          <div class="tb-table-wrapper small">
+            <table id="phishingTable" class="tb-table tb-table-compact">
+              <thead>
+                <tr>
+                  <th>Time</th>
+                  <th>Score</th>
+                  <th>Provider</th>
+                  <th>Domain</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="4" class="tb-empty">No phishing events yet.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Detected Trackers -->
+        <div class="tb-card">
+          <h3>Detected Trackers</h3>
+          <p>Unique third-party domains identified as trackers.</p>
+          <ul id="trackerList" class="tb-list"></ul>
+        </div>
+
+        <!-- Custom rules -->
+        <section class="tb-panel">
+          <div class="tb-panel-header">
+            <div class="tb-panel-title">
+              <img src="../ui-icons/firewall.png" class="tb-panel-icon" alt="Rules" />
+              <div>
+                <h2>Custom Rules</h2>
+                <p>Per-domain Allow / Block rules override default behavior.</p>
+              </div>
+            </div>
+          </div>
+
+          <form id="ruleForm" class="tb-rule-form">
+            <input id="ruleDomain" type="text" placeholder="example.com" autocomplete="off" />
+            <select id="ruleMode">
+              <option value="block">Block</option>
+              <option value="allow">Allow</option>
+            </select>
+            <button type="submit" class="tb-btn primary small">Add Rule</button>
+          </form>
+
+          <div class="tb-table-wrapper small">
+            <table id="rulesTable" class="tb-table tb-table-compact">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Domain</th>
+                  <th>Mode</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td colspan="4" class="tb-empty">No custom rules defined.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Cookie Inspector -->
+<section class="tb-panel">
+  <div class="tb-panel-header">
+    <div class="tb-panel-title">
+      <img src="../ui-icons/firewall.png" class="tb-panel-icon" alt="Cookies" />
+      <div>
+        <h2>Cookie Inspector</h2>
+        <p>See detected cookies' security status.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tb-table-wrapper small">
+    <table id="cookiesTable" class="tb-table tb-table-compact">
+      <thead>
+        <tr>
+          <th>Cookie Name</th>
+          <th>Domain</th>
+          <th>Status</th>
+          <th>Expiry Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="cookieList">
+        <tr><td colspan="5" class="tb-empty">No cookies detected yet.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>
