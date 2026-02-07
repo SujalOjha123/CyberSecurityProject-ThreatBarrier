@@ -5,8 +5,8 @@ ThreatBarrier is a browser-based security, privacy, and threat‑intelligence sy
 
 This project is developed as a Final Year Project (FYP) with a focus on practical browser security, transparency, and user awareness.
 
-🚀 Key Features
-🔍 Live Network Request Monitoring
+**🚀 Key Features
+🔍 Live Network Request Monitoring**
 
 Monitors outgoing browser requests using chrome.declarativeNetRequest
 
