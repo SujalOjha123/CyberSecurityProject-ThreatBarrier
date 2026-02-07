@@ -16,7 +16,7 @@ Logs request details in real time
 
 Displays network activity in the dashboard
 
-🛑 Browser‑Level Blocking (Firewall Rules)
+🛑** Browser‑Level Blocking (Firewall Rules)**
 
 Uses Declarative Net Request (DNR) engine
 
