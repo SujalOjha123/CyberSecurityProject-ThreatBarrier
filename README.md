@@ -175,7 +175,7 @@ VirusTotal API (optional)
 
 Clone the repository
 
-git clone https://github.com/your-username/ThreatBarrier.git
+git clone https://github.com/SujalOjha123/CyberSecurityProject-ThreatBarrier.git
 
 Open Chrome and go to:
 
